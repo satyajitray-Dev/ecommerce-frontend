@@ -11,16 +11,13 @@ function Cart(){
         try{
         const res= await fetch(`${back_url}/api/cart/${userid}`,{
             method: "GET"
-        }
-        )
+        })
         const data= await res.json();
         if(data.success){ 
             setCart(data.get.items);
-            
         }
     }catch(err){
         console.error("error in fetch cart")
-
     }
     finally{
         setloading(false);

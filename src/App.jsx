@@ -12,6 +12,8 @@ import Cart from "./cart/cart.jsx";
 import Userupdate from "./user/userupdate.jsx";
 
 import Getcategory from "./category/getgategory.jsx";
+import Address from "./address/address.jsx";
+import ThemeToggle from "./code.jsx";
 
 
 
@@ -31,6 +33,7 @@ function App(){
        <nav>
         
          <Link to="/">Home</Link>{" | "}
+         <ThemeToggle /> 
         {!token ? (
           <>
             <Link to="/signup">Signup</Link>{" | "}
@@ -47,7 +50,8 @@ function App(){
                 </>)
             :
           (<>
-                <Link to= "/cart">Cart</Link>
+                <Link to= "/cart">Cart</Link>{" | "}
+                <Link to ="/user/address">Address</Link>{" | "}
                   <button onClick={logout}>Logout</button>
             </>)
             }</>
@@ -61,7 +65,7 @@ function App(){
             <Route path="/user" element ={<Users/>}/>
             <Route path="/cart" element ={ <Cart/>}/>
             <Route path="/user/update/:id" element={<Userupdate/>}/>
-          
+            <Route path="/user/address" element ={<Address/>}/>
             <Route path="/admin/create-product" element={<Productadd/>}/>
             <Route path="/category" element={<Getcategory/>}/>
             <Route path="/product/create" element={

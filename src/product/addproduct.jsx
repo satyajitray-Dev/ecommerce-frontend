@@ -30,7 +30,7 @@ function Productadd(){
         try{
         const res=await fetch(`${backend_url}/api/product/add`,{
             method: "POST",
-            headers: { Authorization: `bearer ${token}`},
+            headers: { Authorization: `Bearer ${token}`},
             body:formdata
         
         });
@@ -59,18 +59,16 @@ function Productadd(){
     }
     if(!token){
         return null;
-    }else{
-        console.log(`token : ${token}`);
     }
     return (
         <div className="product-form-container">
             <h2>Add product</h2>
             <form onSubmit={handlesubmit}>
                 <div className="form-group">
-                    <label>title :</label>
+                    <label>Title :</label>
                     <input 
                     type="text"
-                    name="title"
+                    name="Title"
                     value={form.title}
                     placeholder="title"
                     onChange={handlechange}/>
@@ -85,10 +83,10 @@ function Productadd(){
                     onChange={handlechange}/>
                     </div>
                 <div className="form-group">
-                    <label>price :</label>
+                    <label>Price :</label>
                     <input 
                     type="number"
-                    name="price"
+                    name="Price"
                     value={form.price}
                     placeholder="price"
                     onChange={handlechange}/>
@@ -120,7 +118,7 @@ function Productadd(){
                     onChange={handlechange}/>
                 </div>
                 
-                <button type="submit" className="submit-btn">create product</button>
+                <button type="submit" className="submit-btn">Add</button>
                
             </form>
         </div>

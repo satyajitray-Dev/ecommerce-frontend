@@ -8,7 +8,7 @@ function Productlist(){
     const [products,setProducts]= useState([]);
     const[error,seterror]= useState(null);
     const [page, setpage] = useState(1);
-    const [limit] = useState(8);
+    const [limit] = useState(6);
     const [totalpage, settotalpages] = useState(1);
     const [searchQuery, setsearchQuery]= useState('');
    
@@ -96,9 +96,7 @@ useEffect(() => {
           items: [{ productId: productId, quantity: 1 }],
         }),
       });
-
       const data = await res.json();
-
       if (data.success) {
         alert("Product added to cart successfully!");
       } else {
@@ -201,9 +199,9 @@ useEffect(() => {
           </div>))}
           </div>
     <div>
-      <button onClick={()=>handlepagechange(page-1)} disabled={page<=1}>previous</button>
+      <button onClick={()=>handlepagechange(page-1)} disabled={page<=1}>{"<"}</button>
       <button onClick={()=>handlepagechange(page+1)} disabled={page>=totalpage}>
-        next
+        {">"}
       </button>
 
     </div>

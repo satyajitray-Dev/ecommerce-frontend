@@ -10,7 +10,7 @@ function Signup(){
        "name": "",
        "password": "",
        "email": "",
-       "id": "",
+       
        "avatar": null
 
     }
@@ -90,14 +90,7 @@ function Signup(){
                     accept="image/*"
                     onChange={handlechange}/>
                 </div>
-            <div className="form-group">
-                <label>id</label>
-             <input
-            type="number"
-            name="id"
-            value={form.id}
-            placeholder="id"
-            onChange={handlechange}/></div>
+           
             <button type="submit" className="submit-btn">signup</button>
 
         </form>
