@@ -41,7 +41,7 @@ function Signup(){
         }
         alert("signup successfull");
         console.log("Signup successful:", data);
-        navigate("/");
+        navigate("/login");
 
     }
     catch(error){

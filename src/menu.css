@@ -1,0 +1,162 @@
+nav {
+  justify-content: flex-end;
+}
+
+nav .theme-toggle {
+  order: -1;            /* first item, so it sits at the far left */
+  margin-left: 0;
+  margin-right: auto;   /* pushes everything else to the right */
+}
+
+nav .nav-burger {
+  order: 100;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+
+nav .nav-burger:hover {
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: none;
+}
+
+.nav-burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: #ffffff;
+  transition: transform 0.3s, opacity 0.2s;
+}
+
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-links {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 12px;
+  z-index: 60;
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  min-width: 220px;
+  max-width: calc(100vw - 24px);
+  padding: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.nav-links.open {
+  display: flex;
+}
+
+[data-theme="dark"] .nav-links {
+  background: linear-gradient(135deg, #16254a, #0f1a33);
+  border-color: var(--border);
+}
+
+.nav-links a {
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.nav-links a::after {
+  display: none;
+}
+
+.nav-links button {
+  width: 100%;
+  margin-top: 6px;
+}
+/* Category: smaller */
+.filters-bar .category-section {
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.filters-bar .category-section label {
+  font-size: 13px;
+}
+
+.filters-bar .select-wrapper,
+.filters-bar .category-section select {
+  width: 120px;
+}
+
+.filters-bar .category-section select {
+  min-height: 42px;
+  padding: 6px 28px 6px 10px;
+  font-size: 14px;
+  background-position: right 6px center;
+  background-size: 16px;
+  text-overflow: ellipsis;
+}
+
+/* Search: larger, takes all the leftover width */
+.filters-bar .search-bar-container {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.filters-bar .search-input-wrapper {
+  max-width: none;
+  width: 100%;
+}
+
+.filters-bar .search-input {
+  min-height: 54px;
+  font-size: 17px;
+  padding-left: 48px;
+}
+
+.filters-bar .search-icon {
+  width: 22px;
+  height: 22px;
+  left: 16px;
+}
+
+/* Phones: even smaller dropdown so search keeps most of the row */
+@media (max-width: 640px) {
+  .filters-bar .select-wrapper,
+  .filters-bar .category-section select {
+    width: 96px;
+  }
+
+  .filters-bar .category-section select {
+    font-size: 13px;
+    padding: 6px 24px 6px 8px;
+  }
+
+  .filters-bar .search-input {
+    min-height: 50px;
+    font-size: 16px;   /* keep 16px so iOS doesn't zoom on focus */
+    padding-left: 42px;
+  }
+
+  .filters-bar .search-icon {
+    left: 13px;
+  }
+}

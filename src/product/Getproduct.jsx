@@ -132,82 +132,84 @@ useEffect(() => {
     alert("Something went wrong");
   }
 };
-    return (<>
+    return (
+  <>
+    <div className="filters-bar">
       <div className="category-section">
-  <label htmlFor="category">Category:</label>
-  <div className="select-wrapper">
-    <select
-      id="category"
-      value={category}
-      onChange={(e) => {
-        setCategory(e.target.value);
-        setpage(1);
-      }}
-    >
-      <option value="">All Categories</option>
-      {categories.map((cat) => (
-        <option key={cat._id} value={cat._id}>
-          {cat.name}
-        </option>
-      ))}
-    </select>
-  </div>
-</div>
-<div className="search-bar-container">
-  <div className="search-input-wrapper">
-    <svg className="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-    </svg>
-    <input
-      type="text"
-      className="search-input"
-      placeholder="Search product title..."
-      value={searchQuery}
-      onChange={(e) => {
-        setsearchQuery(e.target.value);
-        setpage(1);
-      }}
-    />
-  </div>
-</div>
+        <label htmlFor="category">Category:</label>
+        <div className="select-wrapper">
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => {
+              setCategory(e.target.value);
+              setpage(1);
+            }}
+          >
+            <option value="">All Categories</option>
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
 
-     <div className="product-list-container">
-       
-         <div className="product-grid">
+      <div className="search-bar-container">
+        <div className="search-input-wrapper">
+          <svg className="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search product title..."
+            value={searchQuery}
+            onChange={(e) => {
+              setsearchQuery(e.target.value);
+              setpage(1);
+            }}
+          />
+        </div>
+      </div>
+    </div>
+
+    <div className="product-list-container">
+      <div className="product-grid">
         {products.map((item) => (
           <div className="product-card" key={item._id}>
-            <img src={item.image} alt={item.title} />
+            <img
+              src={item.image.replace("/upload/", "/upload/f_auto,q_auto,w_400/")}
+              alt={item.title}
+              loading="lazy"
+            />
             <h2>{item.title}</h2>
             <p className="description">{item.description}</p>
             <p className="price">Price: {item.price}</p>
             <p className="category">Category: {item.category?.name || item.category}</p>
-            <div className="card-actions" key={item._id}>
-              {/* 1. Add to Cart visible ONLY for 'user' or 'customer' */}
+
+            <div className="card-actions">
               {(role === "user" || role === "customer") && (
-                <button onClick={() => handleAddToCart(item._id)}>
-                  Add to Cart
-                </button>
+                <button onClick={() => handleAddToCart(item._id)}>Add to Cart</button>
               )}
-            {role==='admin' && (
-            <button onClick={() => navigate(`/product/update/${item._id}`)}>
-              Edit
-            </button>
-            )}  
-            <br/>
-            {role==='admin' && ( <button onClick={() => handleDelete(item._id)}>Delete</button>)}
+              {role === "admin" && (
+                <button onClick={() => navigate(`/product/update/${item._id}`)}>Edit</button>
+              )}
+              {role === "admin" && (
+                <button onClick={() => handleDelete(item._id)}>Delete</button>
+              )}
             </div>
-          </div>))}
           </div>
-    <div>
-      <button onClick={()=>handlepagechange(page-1)} disabled={page<=1}>{"<"}</button>
-      <button onClick={()=>handlepagechange(page+1)} disabled={page>=totalpage}>
-        {">"}
-      </button>
+        ))}
+      </div>
 
+      <div>
+        <button onClick={() => handlepagechange(page - 1)} disabled={page <= 1}>{"<"}</button>
+        <button onClick={() => handlepagechange(page + 1)} disabled={page >= totalpage}>{">"}</button>
+      </div>
     </div>
-    </div>
-    </>
-  );
-
+  </>
+);
 }
 export default Productlist;
