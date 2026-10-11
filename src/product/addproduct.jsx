@@ -68,7 +68,7 @@ function Productadd(){
                     <label>Title :</label>
                     <input 
                     type="text"
-                    name="Title"
+                    name="title"
                     value={form.title}
                     placeholder="title"
                     onChange={handlechange}/>
@@ -86,7 +86,7 @@ function Productadd(){
                     <label>Price :</label>
                     <input 
                     type="number"
-                    name="Price"
+                    name="price"
                     value={form.price}
                     placeholder="price"
                     onChange={handlechange}/>
